@@ -10,50 +10,50 @@ function App() {
 
   const[colaboradores, setColaboradores] = useState([])
 
-  const times = [
+  const [times, setTimes] = useState([
     {
       id: uuidv4(),
       nome: 'Programação',
-      corPrimaria: '#57C278',
-      corSecundaria: '#D9F7E9'
+      cor: '#57C278',
+      /* corSecundaria: '#D9F7E9' */
     },
     {
       id: uuidv4(),
       nome: 'Front End',
-      corPrimaria: '#82CFFA',
-      corSecundaria: '#E8F8FF'
+      cor: '#82CFFA',
+      /* corSecundaria: '#E8F8FF' */
     },
     {
       id: uuidv4(),
       nome: 'Data Science',
-      corPrimaria: '#A6D157',
-      corSecundaria: '#F0F8E2'
+      cor: '#A6D157',
+      /* corSecundaria: '#F0F8E2' */
     },
     {
       id: uuidv4(),
       nome: 'Devops',
-      corPrimaria: '#E06B69',
-      corSecundaria: '#FDE7E8'
+      cor: '#E06B69',
+      /* corSecundaria: '#FDE7E8' */
     },
     {
       id: uuidv4(),
       nome: 'UX Design',
-      corPrimaria: '#D86EBF',
-      corSecundaria: '#FAE5F5'
+      cor: '#D86EBF',
+      /* corSecundaria: '#FAE5F5' */
     },
     {
       id: uuidv4(),
       nome: 'Mobile',
-      corPrimaria: '#FEBA05',
-      corSecundaria: '#FFF5D9'
+      cor: '#FEBA05',
+      /* corSecundaria: '#FFF5D9' */
     },
     {
       id: uuidv4(),
       nome: 'Inovação e Gestão',
-      corPrimaria: '#FF8A29',
-      corSecundaria: '#FFEEDF'
+      cor: '#FF8A29',
+      /* corSecundaria: '#FFEEDF' */
     }
-  ]
+  ]);
 
   const aoNovoColaboradorCadastrado = (colaborador) => {
       setColaboradores([...colaboradores, colaborador])
@@ -62,6 +62,15 @@ function App() {
 
   function aoDeletarColaborador(evento) {
     setColaboradores(colaboradores.filter(colaborador => colaborador.id !== evento))
+  }
+
+  function mudaCorTime (cor, id) {
+    setTimes(times.map(time => {
+      if (time.id === id){
+        time.cor=cor;
+      }
+      return time; 
+    }))
   }
 
   return (
@@ -77,6 +86,7 @@ function App() {
         time={time}
         colaboradores={colaboradores.filter(colaborador => colaborador.time === time.nome)}
         aoDeletar={aoDeletarColaborador}
+        aoMudarCor={mudaCorTime}
       />)}
       <Rodape />
 
